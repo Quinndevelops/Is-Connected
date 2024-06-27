@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Status</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #status {
+            font-size: 2em;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .connected {
+            color: green;
+        }
+        .not-connected {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="status" class="not-connected">Not Connected</div>
+
+    <script>
+        function updateConnectionStatus() {
+            const statusDiv = document.getElementById('status');
+            if (navigator.onLine) {
+                statusDiv.textContent = 'Connected';
+                statusDiv.className = 'connected';
+            } else {
+                statusDiv.textContent = 'Not Connected';
+                statusDiv.className = 'not-connected';
+            }
+        }
+
+        window.addEventListener('load', updateConnectionStatus);
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+    </script>
+</body>
+</html>
